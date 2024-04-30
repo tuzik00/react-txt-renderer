@@ -1,0 +1,220 @@
+import {
+    Meta,
+    Source,
+    ArgsTable,
+} from '@storybook/addon-docs';
+
+import MarkdownRenderer from '../MarkdownRenderer';
+
+import {
+    MarkdownRendererTags,
+    MarkdownRendererDirectives,
+} from '../constants';
+
+export const MarkdownRendererTagsList = (obj) => Object
+    .keys(obj)
+    .map((k) => obj[k])
+    .join(' | ')
+
+<Meta
+    id="MarkdownRenderer"
+    title="Components/MarkdownRenderer/Api"
+/>
+
+# MarkdownRenderer
+
+Документация по API для компонента MarkdownRenderer
+
+## Dependencies
+
+[`react-markdown`](https://github.com/remarkjs/react-markdown)
+[`remark-gfm`](https://github.com/remarkjs/remark-gfm)
+[`remark-plugins`](https://github.com/Symbitic/remark-plugins)
+[`remark-directive`](https://github.com/remarkjs/remark-directive)
+
+## Import
+
+```typescript
+import { MarkdownRenderer } from 'react-txt-renderer';
+```
+
+## Props
+
+<ArgsTable of={MarkdownRenderer}/>
+
+## Example
+
+**value** - контент в формате markdown
+
+```typescript jsx
+import React from 'react';
+import MarkdownRenderer from 'react-txt-renderer/dist/MarkdownRenderer';
+
+const Component = () => (
+    <MarkdownRenderer value={'# Content state'} />
+);
+
+export default Component;
+```
+
+**allowedElements** - разрешенные элементы, по умолчанию список определен такой
+
+<Source code={`теги - ${MarkdownRendererTagsList(MarkdownRendererTags)}`} />
+<Source code={`директивы - ${MarkdownRendererTagsList(MarkdownRendererDirectives)}`} />
+
+```typescript jsx
+import React from 'react';
+
+import MarkdownRenderer, {
+    MarkdownRendererTags,
+    MarkdownRendererDirectives,
+} from 'react-txt-renderer/dist/MarkdownRenderer';
+
+const Component = () => (
+    <MarkdownRenderer
+        allowedElements={[
+            MarkdownRendererTags.H1,
+            MarkdownRendererDirectives.LINK,
+        ]}
+        value={'# Content state'}
+    />
+);
+
+export default Component;
+```
+
+**disallowedElements** - запрещенный список элементов, по умолчанию пустой.
+
+```typescript jsx
+import React from 'react';
+import MarkdownRenderer, { MarkdownRendererTags } from 'react-txt-renderer/dist/MarkdownRenderer';
+
+const Component = () => (
+    <MarkdownRenderer
+        disallowedElements={[
+            MarkdownRendererTags.LINK,
+        ]}
+        value={'# Content state'}
+    />
+);
+
+export default Component;
+```
+
+**componentsMap** - карта компонентов для рендера, этими компонентами можно переопределить существующий набор.
+
+```typescript jsx
+import React from 'react';
+
+import MarkdownRenderer, {
+    MarkdownRendererTags,
+    MarkdownRendererDirectives,
+    MarkdownRendererComponentsMapType,
+} from 'react-txt-renderer/dist/MarkdownRenderer';
+
+const componentsMap: MarkdownRendererComponentsMapType = {
+    [MarkdownRendererTags.H1]: ({ children }) => (
+        <h1>
+            {children}
+        </h1>
+    ),
+    [MarkdownRendererDirectives.LINK]: ({
+        children,
+        href,
+        id,
+        title,
+        classNames,
+    }) => (
+        <a
+            id={id}
+            href={href}
+            title={title}
+            className={classNames}
+        >
+            {children}
+        </a>
+    ),
+}
+
+const Component = () => (
+    <MarkdownRenderer
+        componentsMap={componentsMap}
+        value={'# Content state'}
+    />
+);
+
+export default Component;
+```
+
+## Syntax
+
+```
+Заголовки
+
+#  Заголовок h1
+##  Заголовок h2
+###  Заголовок h3
+####  Заголовок h4
+#####  Заголовок h5
+######  Заголовок h6
+
+
+Горизонтальная линия
+---
+
+
+Перевод строки
+
+Пере-\n
+вод
+
+
+Акценты
+
+**Жирный текст**
+*Курсивный текст*
+~~Перечеркнутый текст~~
+Текс в верхнем ^регистре^
+
+
+Цитата
+
+> Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.
+
+
+Параграф
+
+Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты.\n\n
+
+
+Списки
+
+Маркированный
+
+- Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты
+- Вдали от всех живут они в буквенных домах на берегу Семантика большого языкового океана.
+- Маленький ручеек Даль журчит по всей стране и обеспечивает ее всеми необходимыми правилами.
+
+Нумерованный
+
+1. Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты
+2. Вдали от всех живут они в буквенных домах на берегу Семантика большого языкового океана.
+3. Маленький ручеек Даль журчит по всей стране и обеспечивает ее всеми необходимыми правилами.
+
+
+Ссылки
+
+[Обычная ссылка](https://google.com/)
+[Ссылка с заголовком](https://google.com/ "title text!")
+:link[Расширенная ссылка с параметрами]{title="title text!" href="https://google.com/" classNames="class1 class2" id="link" variant="base"}
+
+
+Картинка
+
+![Штурмовик](https://octodex.github.com/images/stormtroopocat.jpg "title")
+
+
+Видео
+
+::youtube[Видео с YouTube]{#id}
+```

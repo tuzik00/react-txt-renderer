@@ -1,0 +1,38 @@
+import {
+    Meta,
+    ArgsTable,
+} from '@storybook/addon-docs';
+
+import ClearMarkdown from '../ClearMarkdown';
+
+<Meta
+    id="ClearMarkdown"
+    title="Components/ClearMarkdown/Api"
+/>
+
+# ClearMarkdown
+
+Документация по API для компонента ClearMarkdown
+
+## Import
+
+```typescript
+import { ClearMarkdown } from 'react-txt-rendererr';
+```
+
+## Props
+
+<ArgsTable of={ClearMarkdown}/>
+
+## Example
+
+```typescript jsx
+import React from 'react';
+import { ClearMarkdown } from 'react-txt-renderer';
+
+const Component = () => (
+    <ClearMarkdown value={'# Content state'} />
+);
+
+export default Component;
+```

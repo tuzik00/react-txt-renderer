@@ -1,0 +1,164 @@
+import {
+    Meta,
+    ArgsTable,
+} from '@storybook/addon-docs';
+
+import BlockRenderer from '../BlockRenderer';
+
+<Meta
+    id="BlockRenderer"
+    title="Components/BlockRenderer/Api"
+/>
+
+# BlockRenderer
+
+Документация по API для компонента BlockRenderer
+
+*Предназначен для рекурсивного рендеринга контента в формате json*
+
+
+## Import
+
+```typescript
+import { BlockRenderer } from 'react-txt-renderer';
+```
+
+## Props
+
+<ArgsTable of={BlockRenderer}/>
+
+## Example
+
+**value** - json c массивом блоков ```[{ type: 'type', data: {...} | null, children?: [] }]```
+
+```typescript jsx
+import React from 'react';
+import BlockRenderer from 'react-txt-renderer/dist/BlockRenderer';
+
+const Blocks = () => (
+    <BlockRenderer
+        value={`[
+            {
+                "type": "markdown",
+                "data": {
+                    "content": "# markdown content",
+                },
+            },
+            {
+                "type": "block1",
+                "data": {
+                    name: "name",
+                },
+                children: [
+                    {
+                        "type": "block2",
+                        "data": {
+                            name: "name",
+                        },
+                    },
+                ]
+            },
+        ]`}
+    />
+);
+
+export default Blocks;
+```
+
+**componentsMap** - карта кампонентов для рендера, где key имя блока, а value компонент или функция
+
+```typescript jsx
+import React, { ReactNode } from 'react';
+
+import MarkdownRenderer from 'react-txt-renderer/dist/MarkdownRenderer';
+
+import BlockRenderer, {
+    BlockRendererComponentType,
+    BlockRendererComponentsMapType,
+} from 'react-txt-renderer/dist/BlockRenderer';
+
+const Markdown: BlockRendererComponentType<{ content: string }> = ({
+    data: { content },
+}) => (
+    <MarkdownRenderer value={content}/>
+);
+
+const Block1: BlockRendererComponentType<{ name: string }> = ({
+    type,  // тип блока
+    depth, // текущая глубина рекурсии
+    data: { name },
+    children,
+}) => (
+    <div>
+        <div>{name}</div>
+        <div>{children}</div>
+    </div>
+);
+
+const componentsMap: BlockRendererComponentsMapType = {
+    markdown: Markdown,
+    block1: Block1,
+    block2: ({ children, data }: { children: ReactNode, data: { name: string } }) => (
+        <div>
+            <div>{data.name}</div>
+            <div>{children}</div>
+        </div>
+    ),
+}
+
+const Component = () => (
+    <BlockRenderer
+        value={'...'}
+        componentsMap={componentsMap}
+    />
+);
+
+export default Component;
+```
+
+**disallowedBlocks** - массив исключенных блоков
+
+```typescript jsx
+import React from 'react';
+import BlockRenderer from 'react-txt-renderer/dist/BlockRenderer';
+
+const Component = () => (
+    <BlockRenderer
+        value={'...'}
+        disallowedBlocks={[
+            'markdown'
+        ]}
+    />
+);
+
+export default Component;
+```
+
+**maxDepth** - максимальный уровень глубины рекурсии
+
+## Syntax
+
+``` json
+[
+    {
+        "type": "markdown", // тип блока
+        "data": {
+            "content": "# content state", // Объект состояния, зависит от типа блока
+        },
+        "children": [
+            {
+                "type": "other",
+                "data": {
+                    "var1": "value1",
+                },
+            },
+        ],
+    },
+    {
+        "type": "other",
+        "data": {
+            "var1": "value1",
+        }
+    }
+]
+```
