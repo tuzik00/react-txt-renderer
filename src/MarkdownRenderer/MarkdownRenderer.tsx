@@ -20,7 +20,7 @@ import {
 
 import { defaultComponents } from './defaultComponents';
 
-import { beautifyMarkdown } from './utils';
+import { clearMarkdown } from './utils';
 import type { MarkdownRendererPropsType } from './types';
 
 const MarkdownRenderer: FC<MarkdownRendererPropsType> = ({
@@ -52,8 +52,8 @@ const MarkdownRenderer: FC<MarkdownRendererPropsType> = ({
     ],
     disallowedElements,
 }) => {
-    const beautifiedMarkdown = useMemo(
-        () => beautifyMarkdown(value),
+    const clearedMarkdown = useMemo(
+        () => clearMarkdown(value),
         [
             value,
         ],
@@ -77,14 +77,14 @@ const MarkdownRenderer: FC<MarkdownRendererPropsType> = ({
         allowedElements={allowedEl}
         components={components}
         remarkPlugins={[
-                remarkGfm,
-                remarkSupersub,
-                remarkDirective,
-                youtubePlugin,
-                linkPlugin,
-            ]}
+            remarkGfm,
+            remarkSupersub,
+            remarkDirective,
+            youtubePlugin,
+            linkPlugin,
+        ]}
       >
-        {beautifiedMarkdown}
+        {clearedMarkdown}
       </ReactMarkdown>
     );
 };

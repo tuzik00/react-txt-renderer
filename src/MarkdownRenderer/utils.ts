@@ -1,4 +1,4 @@
-export const beautifyMarkdown = (md: string) => md
+export const clearMarkdown = (md: string) => md
     .replace(/```youtube\s+([\w\-_]{11})\s+```/g, '```youtube $1```')
     .replace(/\r\n/g, '\n')
     .replace(/\+/g, ' ')
