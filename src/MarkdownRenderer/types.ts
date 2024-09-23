@@ -1,6 +1,6 @@
 import type {
     ComponentType,
-    ReactChildren,
+    ReactNode,
 } from 'react';
 
 import type {
@@ -9,27 +9,27 @@ import type {
 } from './constants';
 
 export type MarkdownRendererComponentsMapType = {
-    [MarkdownRendererTags.H1]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.H2]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.H3]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.H4]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.H5]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.H6]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.BLOCKQUOTE]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.PARAGRAPH]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.ANCHOR]: ComponentType<{ children: ReactChildren; href: string; title: string; }>;
-    [MarkdownRendererTags.UL]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.OL]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.LI]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.BOLD]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.ITALIC]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.STRIKETHROUGH]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.SUP]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.IMAGE]: ComponentType<{ children: ReactChildren; src: string; title: string; }>;
-    [MarkdownRendererTags.CODE]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.HR]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererTags.BR]: ComponentType<{ children: ReactChildren; }>;
-    [MarkdownRendererDirectives.LINK]: ComponentType<{ children: ReactChildren; href: string; id?: string; title?: string; classNames?: string; }>;
+    [MarkdownRendererTags.H1]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.H2]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.H3]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.H4]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.H5]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.H6]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.BLOCKQUOTE]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.PARAGRAPH]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.ANCHOR]: ComponentType<{ children: ReactNode; href: string; title: string; }>;
+    [MarkdownRendererTags.UL]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.OL]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.LI]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.BOLD]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.ITALIC]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.STRIKETHROUGH]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.SUP]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.IMAGE]: ComponentType<{ children: ReactNode; src: string; title: string; }>;
+    [MarkdownRendererTags.CODE]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.HR]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererTags.BR]: ComponentType<{ children: ReactNode; }>;
+    [MarkdownRendererDirectives.LINK]: ComponentType<{ children: ReactNode; href: string; id?: string; title?: string; classNames?: string; }>;
     [MarkdownRendererDirectives.YOUTUBE]: ComponentType<{ title?: string; id: string; }>;
 };
 
