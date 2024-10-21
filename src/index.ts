@@ -6,4 +6,7 @@ export * from '@/BlockRenderer';
 
 export { default as ClearMarkdown } from '@/ClearMarkdown';
 
+export { default as HtmlBlockRenderer } from '@/HtmlBlockRenderer';
+export * from '@/HtmlBlockRenderer';
+
 export * from '@/schemas';
