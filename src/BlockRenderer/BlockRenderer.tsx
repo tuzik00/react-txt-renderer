@@ -6,7 +6,6 @@ import React, {
     useCallback,
 } from 'react';
 
-import { blockSchema } from '@/schemas';
 import type { BlockSchemaType } from '@/schemas';
 
 import RecursiveRenderer from './RecursiveRenderer';
@@ -21,16 +20,8 @@ const BlockRenderer: FC<BlockRendererPropsType> = ({
     const blocksList = useMemo(
         () => {
             try {
-                const validateBlocks = blockSchema.validate(JSON.parse(value));
-
-                if (validateBlocks.error) {
-                    console.error(validateBlocks.error);
-                    return [];
-                }
-
-                return validateBlocks.value as BlockSchemaType[];
+                return JSON.parse(value) as BlockSchemaType[];
             } catch (e) {
-                console.error(e);
                 return [];
             }
         },

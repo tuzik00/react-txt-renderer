@@ -4,8 +4,6 @@ import React, {
     useState,
 } from 'react';
 
-import Box from '@mui/material/Box';
-
 import MarkdownRenderer from '..';
 
 import mock from './mock';
@@ -14,9 +12,9 @@ const Demo: FC = () => {
     const [value, setValue] = useState(mock);
 
     return (
-      <Box>
-        <Box sx={{ display: 'flex' }}>
-          <Box sx={{ width: '50%', pr: 2 }}>
+      <div>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '50%', paddingRight: 2 }}>
             <textarea
               value={value}
               style={{ width: '100%', height: '100%' }}
@@ -24,13 +22,13 @@ const Demo: FC = () => {
                             setValue(e.target.value);
                         }}
             />
-          </Box>
+          </div>
 
-          <Box sx={{ width: '50%', pl: 2 }}>
+          <div style={{ width: '50%', paddingLeft: 2 }}>
             <MarkdownRenderer value={value} />
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
     );
 };
 

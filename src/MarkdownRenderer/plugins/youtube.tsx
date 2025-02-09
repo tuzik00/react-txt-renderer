@@ -1,5 +1,4 @@
 import { visit } from 'unist-util-visit';
-import head from 'lodash/head';
 
 import { MarkdownRendererDirectives } from '../constants';
 
@@ -30,16 +29,14 @@ function directivePlugin() {
                 } = node.attributes || {};
 
                 if (node.type === 'textDirective') {
-                    console.error(`Text directives for ${MarkdownRendererDirectives.YOUTUBE} not supported`, node);
                     return;
                 }
 
                 if (!id) {
-                    console.error('Missing video id', node);
                     return;
                 }
 
-                const title = head(node?.children)?.value;
+                const title = node?.children?.[0]?.value;
 
                 data.hName = node.name;
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import head from 'lodash/head';
 
 import {
     MarkdownRendererTags,
@@ -135,7 +134,7 @@ export const defaultComponents: MarkdownRendererComponentsMapType = {
     [MarkdownRendererTags.CODE]: ({ children }) => {
         // Для старых статей в обзорах ситилинк, сейчас для вставки видео используется
         // тип code, формат разметки такой ```youtube id```.
-        const text = head(children as unknown as string[]) || '';
+        const text = (children as unknown as string[])[0] || '';
 
         if (text.indexOf(MarkdownRendererDirectives.YOUTUBE) === 0) {
             const [, id] = text.split(' ');
