@@ -45,7 +45,6 @@
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.2.5",
     "@mui/material": "^5.2.6",
-    "joi": "^17.6.0",
     "lodash": "^4.17.21",
     "react": "^18",
     "react-dom": "^18",
