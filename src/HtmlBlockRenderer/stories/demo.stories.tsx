@@ -1,8 +1,6 @@
 import type { FC } from 'react';
 import React, { useState } from 'react';
 
-import Box from '@mui/material/Box';
-
 import HtmlBlockRenderer from '..';
 
 import mock from './mock';
@@ -14,9 +12,9 @@ const Demo: FC = () => {
     });
 
     return (
-      <Box>
-        <Box sx={{ display: 'flex' }}>
-          <Box sx={{ width: '100%', pr: 2 }}>
+      <div>
+        <div style={{ display: 'flex' }}>
+          <div style={{ width: '100%', paddingRight: 2 }}>
             <textarea
               value={value}
               style={{ width: '100%', height: '500px' }}
@@ -24,13 +22,13 @@ const Demo: FC = () => {
                             setValue(e.target.value);
                         }}
             />
-          </Box>
+          </div>
 
-          <Box sx={{ width: '100%', pl: 2 }}>
+          <div style={{ width: '100%', paddingLeft: 2 }}>
             {html.render()}
-          </Box>
-        </Box>
-      </Box>
+          </div>
+        </div>
+      </div>
     );
 };
 

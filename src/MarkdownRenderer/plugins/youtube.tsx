@@ -1,5 +1,4 @@
 import { visit } from 'unist-util-visit';
-import head from 'lodash/head';
 
 import { MarkdownRendererDirectives } from '../constants';
 
@@ -37,7 +36,7 @@ function directivePlugin() {
                     return;
                 }
 
-                const title = head(node?.children)?.value;
+                const title = node?.children?.[0]?.value;
 
                 data.hName = node.name;
 
