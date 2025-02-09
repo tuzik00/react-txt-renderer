@@ -22,7 +22,6 @@ const BlockRenderer: FC<BlockRendererPropsType> = ({
             try {
                 return JSON.parse(value) as BlockSchemaType[];
             } catch (e) {
-                console.error(e);
                 return [];
             }
         },

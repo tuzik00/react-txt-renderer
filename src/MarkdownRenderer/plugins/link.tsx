@@ -33,12 +33,10 @@ function variantLinkPlugin() {
                 } = node.attributes || {};
 
                 if (node.type !== 'textDirective') {
-                    console.error(`Only text directives supported for ${MarkdownRendererDirectives.LINK}`, node);
                     return;
                 }
 
                 if (!href) {
-                    console.error('Missing link href', node);
                     return;
                 }
 
